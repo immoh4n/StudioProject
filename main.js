@@ -24,6 +24,40 @@ const analytics = getAnalytics(app);
 const auth = getAuth();
 const db = getFirestore();
 
+// Handle Sign-Up
+const signupForm = document.getElementById('signup-form');
+signupForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const email = document.getElementById('signup-email').value;
+  const password = document.getElementById('signup-password').value;
+
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log('User signed up:', user);
+    })
+    .catch((error) => {
+      console.error('Error during sign-up:', error);
+    });
+});
+
+// Handle Login
+const loginForm = document.getElementById('login-form');
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const email = document.getElementById('login-email').value;
+  const password = document.getElementById('login-password').value;
+
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log('User logged in:', user);
+    })
+    .catch((error) => {
+      console.error('Error during login:', error);
+    });
+});
+
 
 
 const menuBtn = document.getElementById("menu-btn");
@@ -103,39 +137,5 @@ Array.from(instagram.children).forEach((item) => {
   const duplicateNode = item.cloneNode(true);
   duplicateNode.setAttribute("aria-hidden", true);
   instagram.appendChild(duplicateNode);
-});
-
-// Handle Sign-Up
-const signupForm = document.getElementById('signup-form');
-signupForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const email = document.getElementById('signup-email').value;
-  const password = document.getElementById('signup-password').value;
-
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      console.log('User signed up:', user);
-    })
-    .catch((error) => {
-      console.error('Error during sign-up:', error);
-    });
-});
-
-// Handle Login
-const loginForm = document.getElementById('login-form');
-loginForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const email = document.getElementById('login-email').value;
-  const password = document.getElementById('login-password').value;
-
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      console.log('User logged in:', user);
-    })
-    .catch((error) => {
-      console.error('Error during login:', error);
-    });
 });
 
