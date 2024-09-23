@@ -1,28 +1,20 @@
 // Import Firebase SDKs
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
-import { getFirestore, collection, addDoc, query, orderBy, onSnapshot } from "firebase/firestore";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
-// Firebase configuration (you already have this)
+// Your Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBw_sKW-9_4HK8Z7-jAHC7OfbYXg74DThM",
   authDomain: "infini-gallery.firebaseapp.com",
-  databaseURL: "https://infini-gallery-default-rtdb.firebaseio.com",
   projectId: "infini-gallery",
   storageBucket: "infini-gallery.appspot.com",
   messagingSenderId: "308098402389",
-  appId: "1:308098402389:web:e2a96e0c8f4fac34b52cdc",
-  measurementId: "G-V402XHK7DS"
+  appId: "1:308098402389:web:e2a96e0c8f4fac34b52cdc"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-
-// Firebase Auth & Firestore references
-const auth = getAuth();
-const db = getFirestore();
+const auth = getAuth(app);
 
 // Handle Sign-Up
 const signupForm = document.getElementById('signup-form');
@@ -57,6 +49,7 @@ loginForm.addEventListener('submit', (e) => {
       console.error('Error during login:', error);
     });
 });
+
 
 
 
