@@ -580,3 +580,13 @@ nav {
     gap: 2rem;
   }
 }
+
+@media (width < 428px) {
+  .header {
+    min-height: 400px;
+  }
+
+  .portfolio__grid {
+    gap: 1rem;
+  }
+}
